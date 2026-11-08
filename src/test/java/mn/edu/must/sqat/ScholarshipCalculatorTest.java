@@ -75,7 +75,7 @@ class ScholarshipCalculatorTest {
 
     @Test
     void gpaAllGradeLevels() {
-        // A=4, B=3, C=2, D=1, F=0 (default салаа) -> 10 / 5 = 2.0
+        
         assertEquals(2.0, calc.gpa(new double[]{92, 82, 72, 62, 30}), 1e-9);
     }
 
@@ -102,7 +102,7 @@ class ScholarshipCalculatorTest {
 
     @Test
     void scholarshipHighGpaLowCreditsGets70() {
-        // gpa >= 3.8 үнэн, credits >= 15 худал -> 70-ын шалгуур руу
+        
         assertEquals(70, calc.scholarship(3.9, 14, false));
     }
 
@@ -113,12 +113,21 @@ class ScholarshipCalculatorTest {
 
     @Test
     void scholarshipMidGpaLowCreditsGets50() {
-        // gpa >= 3.4 үнэн, credits >= 12 худал -> 50
+        
         assertEquals(50, calc.scholarship(3.5, 10, false));
     }
 
     @Test
     void scholarshipLowGpaReturnsZero() {
         assertEquals(0, calc.scholarship(2.5, 15, false));
+    }
+    @Test
+    void gpaSingleGrade() {
+        assertEquals(4.0, calc.gpa(new double[]{95}), 1e-9);
+    }
+
+    @Test
+    void gpaManyGrades() {
+        assertEquals(2.5, calc.gpa(new double[]{95, 85, 75, 65}), 1e-9);
     }
 }
