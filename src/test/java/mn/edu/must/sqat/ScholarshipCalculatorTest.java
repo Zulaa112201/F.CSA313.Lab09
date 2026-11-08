@@ -99,6 +99,7 @@ class ScholarshipCalculatorTest {
     void scholarshipViolationReturnsZero() {
         assertEquals(0, calc.scholarship(3.9, 16, true));
     }
+    
 
     @Test
     void scholarshipHighGpaLowCreditsGets70() {
@@ -129,5 +130,43 @@ class ScholarshipCalculatorTest {
     @Test
     void gpaManyGrades() {
         assertEquals(2.5, calc.gpa(new double[]{95, 85, 75, 65}), 1e-9);
+    }
+
+    
+    
+
+    @Test
+    void letterGradeScore0IsF() {
+        assertEquals("F", calc.letterGrade(0));
+    }
+
+    @Test
+    void letterGradeScore59point99IsF() {
+        assertEquals("F", calc.letterGrade(59.99));
+    }
+
+    @Test
+    void letterGradeScore60IsD() {
+        assertEquals("D", calc.letterGrade(60));
+    }
+
+    @Test
+    void letterGradeScore69point99IsD() {
+        assertEquals("D", calc.letterGrade(69.99));
+    }
+
+    @Test
+    void letterGradeScore89point99IsB() {
+        assertEquals("B", calc.letterGrade(89.99));
+    }
+
+    @Test
+    void letterGradeScore90IsA() {
+        assertEquals("A", calc.letterGrade(90));
+    }
+
+    @Test
+    void letterGradeScore100IsA() {
+        assertEquals("A", calc.letterGrade(100));
     }
 }
